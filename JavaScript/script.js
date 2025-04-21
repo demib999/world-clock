@@ -12,14 +12,14 @@ function updateTime() {
     );
   }
 
-  // sydney
-  let sydneyElement = document.querySelector("#sydney");
-  if (sydneyElement) {
-    let sydneyDateElement = sydneyElement.querySelector(".date");
-    let sydneyTimeElement = sydneyElement.querySelector(".time");
-    sydneyTime = moment().tz("Australia/Sydney");
-    sydneyDateElement.innerHTML = sydneyTime.format("MMMM Do, YYYY");
-    sydneyTimeElement.innerHTML = sydneyTime.format(
+  // Perth
+  let perthElement = document.querySelector("#perth");
+  if (perthElement) {
+    let perthDateElement = perthElement.querySelector(".date");
+    let perthTimeElement = perthElement.querySelector(".time");
+    perthTime = moment().tz("Australia/Perth");
+    perthDateElement.innerHTML = perthTime.format("MMMM Do, YYYY");
+    perthTimeElement.innerHTML = perthTime.format(
       "h:mm:ss [<small>]A[</small>]"
     );
   }
@@ -27,6 +27,9 @@ function updateTime() {
 
 function updateCity(event) {
   let cityTimeZone = event.target.value;
+  if (cityTimeZone === "current") {
+    cityTimeZone = moment.tz.guess();
+  }
   let cityName = cityTimeZone.replace("_", " ").split("/")[1];
   let cityTime = moment().tz(cityTimeZone);
   let citiesElement = document.querySelector("#cities");
